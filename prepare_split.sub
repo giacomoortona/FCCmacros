@@ -1,0 +1,620 @@
+#1 -> scen #I II III
+#2 -> syst # 1 2 3
+#3 -> bwpb # LMT
+#4 -> bwpg # LMT
+#5 -> bwpt # LMT
+#6 -> pwp #MT
+#7 -> lwp #LMT
+
+executable              = launch2020_prepare_split.sh
+
+arguments               = $(scen) $(syst) $(bwpb) $(bwpg) $(bwpt) $(pwp) $(lwp)
+output                  = /afs/cern.ch/user/g/gortona/work/FCCmacros/$(ClusterId).out
+#output/$(ClusterId).$(ProcId).out
+error                   = /afs/cern.ch/user/g/gortona/work/FCCmacros/error/$(ClusterId).$(ProcId).err
+log                     = /afs/cern.ch/user/g/gortona/work/FCCmacros/log/$(ClusterId).log
+Initialdir              = /afs/cern.ch/user/g/gortona/work/FCCmacros
+
+request_memory          = 3000M
++JobFlavour             = "microcentury"
+
+#x509userproxy           = /afs/cern.ch/user/g/gortona/x509up_u49999
+
+#https://www-auth.cs.wisc.edu/lists/htcondor-users/2010-September/msg00009.shtml
+periodic_remove         = JobStatus == 5
+
+ShouldTransferFiles     = YES
+
+queue scen syst bwpb bwpg bwpt pwp lwp from (
+I 1 M M M M M
+I 1 M M M M T
+I 1 M M M T M
+I 1 M M M T T
+I 1 M M T M M
+I 1 M M T M T
+I 1 M M T T M
+I 1 M M T T T
+I 1 M T M M M
+I 1 M T M M T
+I 1 M T M T M
+I 1 M T M T T
+I 1 M T T M M
+I 1 M T T M T
+I 1 M T T T M
+I 1 M T T T T
+I 1 T M M M M
+I 1 T M M M T
+I 1 T M M T M
+I 1 T M M T T
+I 1 T M T M M
+I 1 T M T M T
+I 1 T M T T M
+I 1 T M T T T
+I 1 T T M M M
+I 1 T T M M T
+I 1 T T M T M
+I 1 T T M T T
+I 1 T T T M M
+I 1 T T T M T
+I 1 T T T T M
+I 1 T T T T T
+II 2 M M M M M
+II 2 M M M M T
+II 2 M M M T M
+II 2 M M M T T
+II 2 M M T M M
+II 2 M M T M T
+II 2 M M T T M
+II 2 M M T T T
+II 2 M T M M M
+II 2 M T M M T
+II 2 M T M T M
+II 2 M T M T T
+II 2 M T T M M
+II 2 M T T M T
+II 2 M T T T M
+II 2 M T T T T
+II 2 T M M M M
+II 2 T M M M T
+II 2 T M M T M
+II 2 T M M T T
+II 2 T M T M M
+II 2 T M T M T
+II 2 T M T T M
+II 2 T M T T T
+II 2 T T M M M
+II 2 T T M M T
+II 2 T T M T M
+II 2 T T M T T
+II 2 T T T M M
+II 2 T T T M T
+II 2 T T T T M
+II 2 T T T T T
+III 3 M M M M M
+III 3 M M M M T
+III 3 M M M T M
+III 3 M M M T T
+III 3 M M T M M
+III 3 M M T M T
+III 3 M M T T M
+III 3 M M T T T
+III 3 M T M M M
+III 3 M T M M T
+III 3 M T M T M
+III 3 M T M T T
+III 3 M T T M M
+III 3 M T T M T
+III 3 M T T T M
+III 3 M T T T T
+III 3 T M M M M
+III 3 T M M M T
+III 3 T M M T M
+III 3 T M M T T
+III 3 T M T M M
+III 3 T M T M T
+III 3 T M T T M
+III 3 T M T T T
+III 3 T T M M M
+III 3 T T M M T
+III 3 T T M T M
+III 3 T T M T T
+III 3 T T T M M
+III 3 T T T M T
+III 3 T T T T M
+III 3 T T T T T
+)
+
+
+
+### queue scen syst bwpb bwpg bwpt pwp lwp from (
+### I 1 L L L M L
+### I 1 L L L M M
+### I 1 L L L M T
+### I 1 L L L T L
+### I 1 L L L T M
+### I 1 L L L T T
+### I 1 L L M M L
+### I 1 L L M M M
+### I 1 L L M M T
+### I 1 L L M T L
+### I 1 L L M T M
+### I 1 L L M T T
+### I 1 L L T M L
+### I 1 L L T M M
+### I 1 L L T M T
+### I 1 L L T T L
+### I 1 L L T T M
+### I 1 L L T T T
+### I 1 L M L M L
+### I 1 L M L M M
+### I 1 L M L M T
+### I 1 L M L T L
+### I 1 L M L T M
+### I 1 L M L T T
+### I 1 L M M M L
+### I 1 L M M M M
+### I 1 L M M M T
+### I 1 L M M T L
+### I 1 L M M T M
+### I 1 L M M T T
+### I 1 L M T M L
+### I 1 L M T M M
+### I 1 L M T M T
+### I 1 L M T T L
+### I 1 L M T T M
+### I 1 L M T T T
+### I 1 L T L M L
+### I 1 L T L M M
+### I 1 L T L M T
+### I 1 L T L T L
+### I 1 L T L T M
+### I 1 L T L T T
+### I 1 L T M M L
+### I 1 L T M M M
+### I 1 L T M M T
+### I 1 L T M T L
+### I 1 L T M T M
+### I 1 L T M T T
+### I 1 L T T M L
+### I 1 L T T M M
+### I 1 L T T M T
+### I 1 L T T T L
+### I 1 L T T T M
+### I 1 L T T T T
+### I 1 M L L M L
+### I 1 M L L M M
+### I 1 M L L M T
+### I 1 M L L T L
+### I 1 M L L T M
+### I 1 M L L T T
+### I 1 M L M M L
+### I 1 M L M M M
+### I 1 M L M M T
+### I 1 M L M T L
+### I 1 M L M T M
+### I 1 M L M T T
+### I 1 M L T M L
+### I 1 M L T M M
+### I 1 M L T M T
+### I 1 M L T T L
+### I 1 M L T T M
+### I 1 M L T T T
+### I 1 M M L M L
+### I 1 M M L M M
+### I 1 M M L M T
+### I 1 M M L T L
+### I 1 M M L T M
+### I 1 M M L T T
+### I 1 M M M M L
+### I 1 M M M M M
+### I 1 M M M M T
+### I 1 M M M T L
+### I 1 M M M T M
+### I 1 M M M T T
+### I 1 M M T M L
+### I 1 M M T M M
+### I 1 M M T M T
+### I 1 M M T T L
+### I 1 M M T T M
+### I 1 M M T T T
+### I 1 M T L M L
+### I 1 M T L M M
+### I 1 M T L M T
+### I 1 M T L T L
+### I 1 M T L T M
+### I 1 M T L T T
+### I 1 M T M M L
+### I 1 M T M M M
+### I 1 M T M M T
+### I 1 M T M T L
+### I 1 M T M T M
+### I 1 M T M T T
+### I 1 M T T M L
+### I 1 M T T M M
+### I 1 M T T M T
+### I 1 M T T T L
+### I 1 M T T T M
+### I 1 M T T T T
+### I 1 T L L M L
+### I 1 T L L M M
+### I 1 T L L M T
+### I 1 T L L T L
+### I 1 T L L T M
+### I 1 T L L T T
+### I 1 T L M M L
+### I 1 T L M M M
+### I 1 T L M M T
+### I 1 T L M T L
+### I 1 T L M T M
+### I 1 T L M T T
+### I 1 T L T M L
+### I 1 T L T M M
+### I 1 T L T M T
+### I 1 T L T T L
+### I 1 T L T T M
+### I 1 T L T T T
+### I 1 T M L M L
+### I 1 T M L M M
+### I 1 T M L M T
+### I 1 T M L T L
+### I 1 T M L T M
+### I 1 T M L T T
+### I 1 T M M M L
+### I 1 T M M M M
+### I 1 T M M M T
+### I 1 T M M T L
+### I 1 T M M T M
+### I 1 T M M T T
+### I 1 T M T M L
+### I 1 T M T M M
+### I 1 T M T M T
+### I 1 T M T T L
+### I 1 T M T T M
+### I 1 T M T T T
+### I 1 T T L M L
+### I 1 T T L M M
+### I 1 T T L M T
+### I 1 T T L T L
+### I 1 T T L T M
+### I 1 T T L T T
+### I 1 T T M M L
+### I 1 T T M M M
+### I 1 T T M M T
+### I 1 T T M T L
+### I 1 T T M T M
+### I 1 T T M T T
+### I 1 T T T M L
+### I 1 T T T M M
+### I 1 T T T M T
+### I 1 T T T T L
+### I 1 T T T T M
+### I 1 T T T T T
+### II 2 L L L M L
+### II 2 L L L M M
+### II 2 L L L M T
+### II 2 L L L T L
+### II 2 L L L T M
+### II 2 L L L T T
+### II 2 L L M M L
+### II 2 L L M M M
+### II 2 L L M M T
+### II 2 L L M T L
+### II 2 L L M T M
+### II 2 L L M T T
+### II 2 L L T M L
+### II 2 L L T M M
+### II 2 L L T M T
+### II 2 L L T T L
+### II 2 L L T T M
+### II 2 L L T T T
+### II 2 L M L M L
+### II 2 L M L M M
+### II 2 L M L M T
+### II 2 L M L T L
+### II 2 L M L T M
+### II 2 L M L T T
+### II 2 L M M M L
+### II 2 L M M M M
+### II 2 L M M M T
+### II 2 L M M T L
+### II 2 L M M T M
+### II 2 L M M T T
+### II 2 L M T M L
+### II 2 L M T M M
+### II 2 L M T M T
+### II 2 L M T T L
+### II 2 L M T T M
+### II 2 L M T T T
+### II 2 L T L M L
+### II 2 L T L M M
+### II 2 L T L M T
+### II 2 L T L T L
+### II 2 L T L T M
+### II 2 L T L T T
+### II 2 L T M M L
+### II 2 L T M M M
+### II 2 L T M M T
+### II 2 L T M T L
+### II 2 L T M T M
+### II 2 L T M T T
+### II 2 L T T M L
+### II 2 L T T M M
+### II 2 L T T M T
+### II 2 L T T T L
+### II 2 L T T T M
+### II 2 L T T T T
+### II 2 M L L M L
+### II 2 M L L M M
+### II 2 M L L M T
+### II 2 M L L T L
+### II 2 M L L T M
+### II 2 M L L T T
+### II 2 M L M M L
+### II 2 M L M M M
+### II 2 M L M M T
+### II 2 M L M T L
+### II 2 M L M T M
+### II 2 M L M T T
+### II 2 M L T M L
+### II 2 M L T M M
+### II 2 M L T M T
+### II 2 M L T T L
+### II 2 M L T T M
+### II 2 M L T T T
+### II 2 M M L M L
+### II 2 M M L M M
+### II 2 M M L M T
+### II 2 M M L T L
+### II 2 M M L T M
+### II 2 M M L T T
+### II 2 M M M M L
+### II 2 M M M M M
+### II 2 M M M M T
+### II 2 M M M T L
+### II 2 M M M T M
+### II 2 M M M T T
+### II 2 M M T M L
+### II 2 M M T M M
+### II 2 M M T M T
+### II 2 M M T T L
+### II 2 M M T T M
+### II 2 M M T T T
+### II 2 M T L M L
+### II 2 M T L M M
+### II 2 M T L M T
+### II 2 M T L T L
+### II 2 M T L T M
+### II 2 M T L T T
+### II 2 M T M M L
+### II 2 M T M M M
+### II 2 M T M M T
+### II 2 M T M T L
+### II 2 M T M T M
+### II 2 M T M T T
+### II 2 M T T M L
+### II 2 M T T M M
+### II 2 M T T M T
+### II 2 M T T T L
+### II 2 M T T T M
+### II 2 M T T T T
+### II 2 T L L M L
+### II 2 T L L M M
+### II 2 T L L M T
+### II 2 T L L T L
+### II 2 T L L T M
+### II 2 T L L T T
+### II 2 T L M M L
+### II 2 T L M M M
+### II 2 T L M M T
+### II 2 T L M T L
+### II 2 T L M T M
+### II 2 T L M T T
+### II 2 T L T M L
+### II 2 T L T M M
+### II 2 T L T M T
+### II 2 T L T T L
+### II 2 T L T T M
+### II 2 T L T T T
+### II 2 T M L M L
+### II 2 T M L M M
+### II 2 T M L M T
+### II 2 T M L T L
+### II 2 T M L T M
+### II 2 T M L T T
+### II 2 T M M M L
+### II 2 T M M M M
+### II 2 T M M M T
+### II 2 T M M T L
+### II 2 T M M T M
+### II 2 T M M T T
+### II 2 T M T M L
+### II 2 T M T M M
+### II 2 T M T M T
+### II 2 T M T T L
+### II 2 T M T T M
+### II 2 T M T T T
+### II 2 T T L M L
+### II 2 T T L M M
+### II 2 T T L M T
+### II 2 T T L T L
+### II 2 T T L T M
+### II 2 T T L T T
+### II 2 T T M M L
+### II 2 T T M M M
+### II 2 T T M M T
+### II 2 T T M T L
+### II 2 T T M T M
+### II 2 T T M T T
+### II 2 T T T M L
+### II 2 T T T M M
+### II 2 T T T M T
+### II 2 T T T T L
+### II 2 T T T T M
+### II 2 T T T T T
+### III 3 L L L M L
+### III 3 L L L M M
+### III 3 L L L M T
+### III 3 L L L T L
+### III 3 L L L T M
+### III 3 L L L T T
+### III 3 L L M M L
+### III 3 L L M M M
+### III 3 L L M M T
+### III 3 L L M T L
+### III 3 L L M T M
+### III 3 L L M T T
+### III 3 L L T M L
+### III 3 L L T M M
+### III 3 L L T M T
+### III 3 L L T T L
+### III 3 L L T T M
+### III 3 L L T T T
+### III 3 L M L M L
+### III 3 L M L M M
+### III 3 L M L M T
+### III 3 L M L T L
+### III 3 L M L T M
+### III 3 L M L T T
+### III 3 L M M M L
+### III 3 L M M M M
+### III 3 L M M M T
+### III 3 L M M T L
+### III 3 L M M T M
+### III 3 L M M T T
+### III 3 L M T M L
+### III 3 L M T M M
+### III 3 L M T M T
+### III 3 L M T T L
+### III 3 L M T T M
+### III 3 L M T T T
+### III 3 L T L M L
+### III 3 L T L M M
+### III 3 L T L M T
+### III 3 L T L T L
+### III 3 L T L T M
+### III 3 L T L T T
+### III 3 L T M M L
+### III 3 L T M M M
+### III 3 L T M M T
+### III 3 L T M T L
+### III 3 L T M T M
+### III 3 L T M T T
+### III 3 L T T M L
+### III 3 L T T M M
+### III 3 L T T M T
+### III 3 L T T T L
+### III 3 L T T T M
+### III 3 L T T T T
+### III 3 M L L M L
+### III 3 M L L M M
+### III 3 M L L M T
+### III 3 M L L T L
+### III 3 M L L T M
+### III 3 M L L T T
+### III 3 M L M M L
+### III 3 M L M M M
+### III 3 M L M M T
+### III 3 M L M T L
+### III 3 M L M T M
+### III 3 M L M T T
+### III 3 M L T M L
+### III 3 M L T M M
+### III 3 M L T M T
+### III 3 M L T T L
+### III 3 M L T T M
+### III 3 M L T T T
+### III 3 M M L M L
+### III 3 M M L M M
+### III 3 M M L M T
+### III 3 M M L T L
+### III 3 M M L T M
+### III 3 M M L T T
+### III 3 M M M M L
+### III 3 M M M M M
+### III 3 M M M M T
+### III 3 M M M T L
+### III 3 M M M T M
+### III 3 M M M T T
+### III 3 M M T M L
+### III 3 M M T M M
+### III 3 M M T M T
+### III 3 M M T T L
+### III 3 M M T T M
+### III 3 M M T T T
+### III 3 M T L M L
+### III 3 M T L M M
+### III 3 M T L M T
+### III 3 M T L T L
+### III 3 M T L T M
+### III 3 M T L T T
+### III 3 M T M M L
+### III 3 M T M M M
+### III 3 M T M M T
+### III 3 M T M T L
+### III 3 M T M T M
+### III 3 M T M T T
+### III 3 M T T M L
+### III 3 M T T M M
+### III 3 M T T M T
+### III 3 M T T T L
+### III 3 M T T T M
+### III 3 M T T T T
+### III 3 T L L M L
+### III 3 T L L M M
+### III 3 T L L M T
+### III 3 T L L T L
+### III 3 T L L T M
+### III 3 T L L T T
+### III 3 T L M M L
+### III 3 T L M M M
+### III 3 T L M M T
+### III 3 T L M T L
+### III 3 T L M T M
+### III 3 T L M T T
+### III 3 T L T M L
+### III 3 T L T M M
+### III 3 T L T M T
+### III 3 T L T T L
+### III 3 T L T T M
+### III 3 T L T T T
+### III 3 T M L M L
+### III 3 T M L M M
+### III 3 T M L M T
+### III 3 T M L T L
+### III 3 T M L T M
+### III 3 T M L T T
+### III 3 T M M M L
+### III 3 T M M M M
+### III 3 T M M M T
+### III 3 T M M T L
+### III 3 T M M T M
+### III 3 T M M T T
+### III 3 T M T M L
+### III 3 T M T M M
+### III 3 T M T M T
+### III 3 T M T T L
+### III 3 T M T T M
+### III 3 T M T T T
+### III 3 T T L M L
+### III 3 T T L M M
+### III 3 T T L M T
+### III 3 T T L T L
+### III 3 T T L T M
+### III 3 T T L T T
+### III 3 T T M M L
+### III 3 T T M M M
+### III 3 T T M M T
+### III 3 T T M T L
+### III 3 T T M T M
+### III 3 T T M T T
+### III 3 T T T M L
+### III 3 T T T M M
+### III 3 T T T M T
+### III 3 T T T T L
+### III 3 T T T T M
+### III 3 T T T T T
+### )
+
+#queue infile in (dy dy0 qcd qcd0 singleTau singleTau0 ttbar ttbar0)
+#queue infile in (singleTau singleTau0)
+
