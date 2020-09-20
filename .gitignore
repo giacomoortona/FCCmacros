@@ -1,4 +1,6 @@
 higgsCombine*root
 card*txt
 card*root
+CMSSW_10*
+*.pyc
 ws*root
